@@ -2,7 +2,7 @@ package cxt.example.lee.liberty.hrd;
 
 import java.util.Hashtable;
 
-public class Fragment {
+public class Chess {
 
     private String name;
     private int length;
@@ -17,10 +17,10 @@ public class Fragment {
     static final int DIRECTION_LEFT = 3;
     static final int DIRECTION_RIGHT = 4;
 
-    static Hashtable<Integer, Fragment> fragmentHashTable;
+    static Hashtable<Integer, Chess> fragmentHashTable;
     private static ChessBoard chessBoard;
 
-    Fragment(String name, int value, int length, int height, int xPos, int yPos, int mPicture) {
+    Chess(String name, int value, int length, int height, int xPos, int yPos, int mPicture) {
         this.name = name;
         this.length = length;
         this.height = height;
@@ -30,9 +30,9 @@ public class Fragment {
         this.mPicture = mPicture;
     }
 
-    static boolean addFragment(Fragment fragment) {
+    static boolean addFragment(Chess fragment) {
         if (fragmentHashTable == null)
-            fragmentHashTable = new Hashtable<Integer, Fragment>();
+            fragmentHashTable = new Hashtable<Integer, Chess>();
         if (fragmentHashTable.containsKey((Integer) fragment.getValue()))
             return false;
         if (!chessBoard.PutFragment(fragment))
@@ -42,25 +42,25 @@ public class Fragment {
     }
 
     static void setChessBoard(ChessBoard chessBoard) {
-        Fragment.chessBoard = chessBoard;
+        Chess.chessBoard = chessBoard;
     }
 
-    Fragment move(int direction) {
+    Chess move(int direction) {
         if (chessBoard.fragmentCanBeMoved(this, direction))
             switch (direction) {
-                case Fragment.DIRECTION_UP: {
+                case Chess.DIRECTION_UP: {
                     this.setyPos(this.getyPos() - 1);
                     break;
                 }
-                case Fragment.DIRECTION_DOWN: {
+                case Chess.DIRECTION_DOWN: {
                     this.setyPos(this.getyPos() + 1);
                     break;
                 }
-                case Fragment.DIRECTION_LEFT: {
+                case Chess.DIRECTION_LEFT: {
                     this.setxPos(this.getxPos() - 1);
                     break;
                 }
-                case Fragment.DIRECTION_RIGHT: {
+                case Chess.DIRECTION_RIGHT: {
                     this.setxPos(this.getxPos() + 1);
                     break;
                 }
